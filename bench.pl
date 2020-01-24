@@ -40,10 +40,12 @@ use Statistics::Descriptive;
 
 # Versions to test
 my @versions = (
-    { id => 'baseline', repository => 'https://github.com/madler/zlib.git', commit_or_branch => '50893291621658f355bc5b4d450a8d06a563053d' },
-    { id => 'cloudflare', repository => 'https://github.com/cloudflare/zlib.git', commit_or_branch => 'a80420c63532c25220a54ea0980667c02303460a' },
-    { id => 'intel', repository => 'https://github.com/jtkukunas/zlib.git', commit_or_branch => 'e176b3c23ace88d5ded5b8f8371bbab6d7b02ba8'},
-    { id => 'zlib-ng', repository => 'git@github.com:Dead2/zlib-ng.git', commit_or_branch => '4b1728a261e32e08bc5403f391ba65bfe5f4ba57', CONFIGURE_FLAGS => '--zlib-compat'},
+    { id => 'baseline', repository => 'https://github.com/madler/zlib.git', commit_or_branch => 'cacf7f1d4e3d44d871b605da3b647f07d718623f' },
+    { id => 'cloudflare', repository => 'https://github.com/cloudflare/zlib.git', commit_or_branch => 'af9ef2e94cb9ffebc8dc6cc6d856e494880d869b' },
+    { id => 'intel', repository => 'https://github.com/jtkukunas/zlib.git', commit_or_branch => 'a43a247bfa16ec5368747b5b64f11ea5ca033010'},
+    { id => 'zlib-ng-compat', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8', CONFIGURE_FLAGS => '--zlib-compat'},
+    { id => 'zlib-ng', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8'},
+    { id => 'rodren-zlib', repository => 'https://github.com/rordenlab/zlib.git', commit_or_branch => 'aa1deeab86b70b75f9940b203c3226a39e60fa84'},
 );
 
 # Compression levels to benchmark
