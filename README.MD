@@ -3,7 +3,9 @@
 
 ## Introduction
 
-This is a simple script by [Juho Snellman](https://github.com/jsnell/zlib-bench) to benchmark different zlib compression libraries.  Here, I have adapted the script to evaluate .gz compression of [NIfTI](https://nifti.nimh.nih.gov/) format brain images. It is common for tools like [AFNI](https://afni.nimh.nih.gov/) and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) to save NIfTI images using gzip compression (.nii.gz files).  Modern MRI methods such as multi-band yield huge datasets, so considerable [time](https://github.com/rordenlab/niimath) spent compressing these images.  Parallel compression (using [pigz](https://github.com/madler/pigz)) and accelerated zlib compression libraries like [ClodFlare zlib and zlib-ng can have a dramatic benefit.
+This is a simple script by [Juho Snellman](https://github.com/jsnell/zlib-bench) to benchmark different zlib compression libraries.  Here, I have adapted the script to evaluate .gz compression of [NIfTI](https://nifti.nimh.nih.gov/) format brain images. It is common for tools like [AFNI](https://afni.nimh.nih.gov/) and [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki) to save NIfTI images using gzip compression (.nii.gz files).  Modern MRI methods such as multi-band yield huge datasets, so considerable [time](https://github.com/rordenlab/niimath) spent compressing these images.  Parallel compression (using [pigz](https://github.com/madler/pigz)) and accelerated zlib compression libraries like [CloudFlare zlib](https://github.com/cloudflare/zlib) and [zlib-ng](https://github.com/zlib-ng/zlib-ng) can have a dramatic benefit.
+
+The results below are for the default compression level (6), and each algorithm creates similarly sized output. Note that at lower compression levels (1), the zlib-ng creates larger files than the other methods but is dramatically faster. Also, this dataset suggest that CloudFlare is [faster at extreme compression levels (9)](https://github.com/InsightSoftwareConsortium/ITK/issues/416). 
 
 
 | Image        |    Baseline   |  CloudFlare   |   zlib-ng     |
@@ -57,4 +59,7 @@ Any files starting with a small letter in the corpus/ directory will be used as 
 --quiet                Don't print progress reports to STDERR
 ```
 
+## Alternatives
+
+There are modern compression methods like [zstd](http://richg42.blogspot.com/2016/08/rads-ground-breaking-lossless.html) that outperform the classic GZ format. Furter, most compression tools are tuned for 8-bit data, and methods like [BLOSC](https://blosc.org/posts/zstd-has-just-landed-in-blosc/) can aid the 16, 32 and 64 bit datatypes common in science. However, gz is simple and ubiquitous, and is the accepted compression format for NIfTI images.
 
