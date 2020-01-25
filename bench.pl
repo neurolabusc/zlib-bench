@@ -41,13 +41,14 @@ use Statistics::Descriptive;
 # Versions to test
 my @versions = (
     { id => 'baseline', repository => 'https://github.com/madler/zlib.git', commit_or_branch => '50893291621658f355bc5b4d450a8d06a563053d' },
-    { id => 'cloudflare', repository => 'https://github.com/cloudflare/zlib.git', commit_or_branch => 'a80420c63532c25220a54ea0980667c02303460a' },
-    { id => 'intel', repository => 'https://github.com/jtkukunas/zlib.git', commit_or_branch => 'e176b3c23ace88d5ded5b8f8371bbab6d7b02ba8'},
-    { id => 'zlib-ng', repository => 'git@github.com:Dead2/zlib-ng.git', commit_or_branch => '4b1728a261e32e08bc5403f391ba65bfe5f4ba57', CONFIGURE_FLAGS => '--zlib-compat'},
+    { id => 'cloudflare', repository => 'https://github.com/rordenlab/zlib.git', commit_or_branch => 'aa1deeab86b70b75f9940b203c3226a39e60fa84'},
+    { id => 'ng-compat', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8', CONFIGURE_FLAGS => '--zlib-compat'},
+
+    { id => 'ng', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8'},
 );
 
 # Compression levels to benchmark
-my @compress_levels = qw(1 3 5 9);
+my @compress_levels = qw(6);
 
 # Number of iterations of each benchmark to run (in addition to a single
 # warmup run).
@@ -55,7 +56,7 @@ my $runs = 5;
 
 # Number of compressions / decompressions to do in each run
 my $compress_iters = 10;
-my $decompress_iters = 50;
+my $decompress_iters = 20;
 
 # If true, recompile all the zlib versions before running benchmark
 my $recompile = 0;
@@ -280,11 +281,8 @@ sub pprint_text {
             my $time = $benchmark{output}{$id}{time}{mean};
             my $error = $benchmark{output}{$id}{time}{error};
             my $basetime = $benchmark{output}{'baseline'}{time}{mean};
-            printf("%5.2f \x{00b1} %4.2f (%6.2f%%) ",
-                   $time,
-                   $error,
-                   $time / $basetime * 100,
-                   '');
+            printf("%5.2f (%6.2f%%) ", $time, $time / $basetime * 100);
+
         }
     }
 
