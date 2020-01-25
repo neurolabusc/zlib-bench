@@ -7,6 +7,8 @@ This is a simple script by [Juho Snellman](https://github.com/jsnell/zlib-bench)
 
 The results below are for the default compression level (6), and each algorithm creates similarly sized output. Note that at lower compression levels (1), the zlib-ng creates larger files than the other methods but is dramatically faster. Also, this dataset suggest that CloudFlare is [faster at extreme compression levels (9)](https://github.com/InsightSoftwareConsortium/ITK/issues/416). 
 
+Here we evaluate conversion of [ASL](https://osf.io/td4bx/wiki/home/) images. These files can be viewed with [MRIcroGL](https://github.com/rordenlab/MRIcroGL12/releases). The file asl16 is the raw 16-bit integer data from the scanner, which shows a low of high frequency noise throughout the image. The image asl32 has had all voxels outside the brain set to zero, has been blurred, and is saved as 32-bit floating point data. Since all the voxels outside the brain are zero in this image, the compression can leverage the redundancy to dramatically reduce file size. Note that while both CloudFlare and zlib-ng outperform the baseline library, the CloudFlare library is particularly fast for the scalp-stripped image.
+
 
 | Image        |    Baseline   |  CloudFlare   |   zlib-ng     |
 |--------------|--------------:|--------------:|--------------:|
@@ -38,7 +40,7 @@ perl bench.pl --read-json=results.json
 
 To change the versions which are tested against, you need to edit the `@versions` variable in the source code (either the git repository urls or the version hashes). Note that if you change the definition of existing entries under versions (or if you e.g. upgrade the compiler), you’ll probably want to run with the `--recompile` flag the next time.
 
-##Adding new input files to the benchmark
+## Adding new input files to the benchmark
 
 Any files starting with a small letter in the corpus/ directory will be used as inputs, each one creating a new benchmark family (decompression, compression at each specified compression level). The name of the file is used as the benchmark id in reports.
 
