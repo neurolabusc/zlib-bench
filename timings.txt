@@ -1,0 +1,86 @@
+----------------------------------------------------
+Modern Laptop Intel i5-8259U, MacOS 10.14.6 clang 11
+
+decompress asl16.nii (20 iterations)
+ Execution time [s]:  2.38 (100.00%)  2.12 ( 88.80%)  1.99 ( 83.60%) 
+decompress asl32.nii (20 iterations)
+ Execution time [s]:  2.43 (100.00%)  1.91 ( 78.42%)  2.00 ( 82.15%) 
+
+compress asl16.nii -1 (10 iterations)
+  Compression ratio:  0.57                   0.57                   0.77                  
+ Execution time [s]:  2.94 (100.00%)  2.88 ( 97.90%)  1.31 ( 44.42%) 
+compress asl32.nii -1 (10 iterations)
+  Compression ratio:  0.44                   0.44                   0.49                  
+ Execution time [s]:  5.30 (100.00%)  4.08 ( 76.99%)  1.61 ( 30.38%) 
+
+compress asl16.nii -6 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.54                  
+ Execution time [s]: 14.95 (100.00%)  7.71 ( 51.58%)  8.25 ( 55.19%) 
+compress asl32.nii -6 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43                  
+ Execution time [s]:  6.43 (100.00%)  4.44 ( 69.01%)  5.81 ( 90.39%) 
+
+compress asl16.nii -9 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.55                  
+ Execution time [s]: 45.52 (100.00%) 11.33 ( 24.88%) 42.92 ( 94.28%) 
+compress asl32.nii -9 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43                  
+ Execution time [s]: 18.26 (100.00%)  7.73 ( 42.33%)  9.13 ( 50.02%) 
+ 
+----------------------------------------------------
+Modern Desktop AMD Ryzen 3900X, Ubuntu 19.10, gcc 9.2.1
+
+decompress asl16.nii (20 iterations)
+ Execution time [s]:  1.94 (100.00%)  1.76 ( 90.90%)  1.76 ( 90.95%) 
+decompress asl32.nii (20 iterations)
+ Execution time [s]:  2.19 (100.00%)  1.80 ( 82.55%)  1.66 ( 76.02%) 
+
+compress asl16.nii -1 (10 iterations)
+  Compression ratio:  0.57                   0.57                   0.77                  
+ Execution time [s]:  2.94 (100.00%)  2.21 ( 75.28%)  1.14 ( 38.73%) 
+compress asl32.nii -1 (10 iterations)
+  Compression ratio:  0.44                   0.44                   0.49                  
+ Execution time [s]:  5.49 (100.00%)  3.06 ( 55.68%)  1.41 ( 25.63%) 
+
+compress asl16.nii -6 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.54                  
+ Execution time [s]: 11.97 (100.00%)  6.28 ( 52.47%)  6.49 ( 54.27%) 
+compress asl32.nii -6 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43                  
+ Execution time [s]:  6.46 (100.00%)  3.60 ( 55.69%)  5.01 ( 77.45%) 
+
+compress asl16.nii -9 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.55                  
+ Execution time [s]: 34.56 (100.00%) 10.11 ( 29.25%) 30.22 ( 87.45%) 
+compress asl32.nii -9 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43                  
+ Execution time [s]: 10.46 (100.00%)  6.39 ( 61.09%)  7.50 ( 71.70%)
+ 
+----------------------------------------------------
+Old Desktop Intel X5670, Ubuntu 14.04, gcc 4.8.4
+
+decompress asl16.nii (20 iterations)
+ Execution time [s]:  3.23 (100.00%)  2.98 ( 92.08%)  2.68 ( 82.80%) 
+decompress asl32.nii (20 iterations)
+ Execution time [s]:  3.41 (100.00%)  2.88 ( 84.44%)  2.65 ( 77.70%) 
+
+compress asl16.nii -1 (10 iterations)
+  Compression ratio:  0.57                   0.57                   0.77
+ Execution time [s]:  5.10 (100.00%)  3.96 ( 77.75%)  2.00 ( 39.22%) 
+compress asl32.nii -1 (10 iterations)
+  Compression ratio:  0.44                   0.44                   0.49
+ Execution time [s]:  8.22 (100.00%)  5.28 ( 64.26%)  2.76 ( 33.55%) 
+
+compress asl16.nii -6 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.54
+ Execution time [s]: 18.05 (100.00%)  9.34 ( 51.75%) 14.59 ( 80.79%) 
+compress asl32.nii -6 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43
+ Execution time [s]: 10.46 (100.00%)  6.26 ( 59.85%) 10.09 ( 96.50%) 
+
+compress asl16.nii -9 (10 iterations)
+  Compression ratio:  0.55                   0.54                   0.55
+ Execution time [s]: 50.10 (100.00%) 14.15 ( 28.23%) 72.94 (145.59%) 
+compress asl32.nii -9 (10 iterations)
+  Compression ratio:  0.43                   0.43                   0.43
+ Execution time [s]: 15.40 (100.00%) 10.76 ( 69.89%) 20.49 (133.05%) 

@@ -41,14 +41,12 @@ use Statistics::Descriptive;
 # Versions to test
 my @versions = (
     { id => 'baseline', repository => 'https://github.com/madler/zlib.git', commit_or_branch => '50893291621658f355bc5b4d450a8d06a563053d' },
-    { id => 'cloudflare', repository => 'https://github.com/rordenlab/zlib.git', commit_or_branch => 'aa1deeab86b70b75f9940b203c3226a39e60fa84'},
-    { id => 'ng-compat', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8', CONFIGURE_FLAGS => '--zlib-compat'},
-
+    { id => 'cloudflare', repository => 'https://github.com/rordenlab/zlib.git', commit_or_branch => 'b3064e0a1059ea5b9a6c78a889bdf55637ccd1d2'},
     { id => 'ng', repository => 'https://github.com/zlib-ng/zlib-ng.git', commit_or_branch => '550f98395c8677ae9b08ec39433f5137e5cea2c8'},
 );
 
 # Compression levels to benchmark
-my @compress_levels = qw(6);
+my @compress_levels = qw(1 6 9);
 
 # Number of iterations of each benchmark to run (in addition to a single
 # warmup run).
@@ -104,7 +102,7 @@ sub init {
 sub fetch_and_compile_all {
     for my $version (@versions) {
         if ($recompile or
-            !-f "$version->{dir}/minigzip64") {
+            !-f "$version->{dir}/minigzip") {
             trace "Checking out $version->{id}\n";
             checkout $version->{id}, $version->{repository}, $version->{commit_or_branch};
             trace "Compiling $version->{id}\n";
@@ -132,13 +130,13 @@ sub benchmark_command {
 sub benchmark_compress {
     my ($zlib_dir, $input, $level, $iters) = @_;
 
-    benchmark_command "$zlib_dir/minigzip64 -$level < $input", $iters;
+    benchmark_command "$zlib_dir/minigzip -$level < $input", $iters;
 }
 
 sub benchmark_decompress {
     my ($zlib_dir, $input, $iters) = @_;
 
-    my $res = benchmark_command "$zlib_dir/minigzip64 -d < $input > /dev/null", $iters;
+    my $res = benchmark_command "$zlib_dir/minigzip -d < $input > /dev/null", $iters;
     delete $res->{size};
 
     return $res;
@@ -181,7 +179,7 @@ sub benchmark_all {
         my ($fh) = File::Temp->new();
         $compressed{$input}{fh} = $fh;
         $compressed{$input}{tmpfile} = $fh->filename;
-        print $fh qx"$versions[0]{dir}/minigzip64 < $input";
+        print $fh qx"$versions[0]{dir}/minigzip < $input";
         close $fh;
     }
 
